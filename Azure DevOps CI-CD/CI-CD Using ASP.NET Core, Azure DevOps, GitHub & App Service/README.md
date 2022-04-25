@@ -5,9 +5,10 @@
 | 02 | [Create Azure DevOps Project](#02) |
 | 03 | [Clone Repository & Create .Net Project](#03) |
 | 04 | [Create Build Pipeline](#04) |
-| 05 | [Create a Service connection](#05) |
-| 06 | [Create Release Pipeline](#06) |
-| 07 | [Deployment Verification](#07) |
+| 05 | [Create Azure App Service](#05) |
+| 06 | [Create a Service connection](#06) |
+| 07 | [Create Release Pipeline](#07) |
+| 08 | [Deployment Verification](#08) |
 
 ### <a name="01">:diamond_shape_with_a_dot_inside: &nbsp;Introduction</a> 
 We will create a CI/CD of a ASP.NET Core Project Using Azure DevOps, GitHub & Azure App Service. So we need:
@@ -127,4 +128,35 @@ I have already created a project which is pushed in github. If you don't have an
 - Go to our pipeline and click our last build project. You will see the **Publish** Button where our artifacts are stored.
   <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-15.png" alt="Artifacts"> <br><br>
   <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-16.png" alt="Artifacts"> <br><br>
+
+### <a name="05">:diamond_shape_with_a_dot_inside: &nbsp;Create Azure App Service</a> 
+- Go to [Azure Portal](https://portal.azure.com/#home) and Search **App Service** on the search bar. Go to the App Service. Click Create and a page will be appeared. Proivde the necessry information on that page. I have given the web app name is **sadik-ci-cd**. Select the **Runtime** option. Our project is asp.net core so I have selected **.NET CORE 3.1 LTS**.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-17.png" alt="App Service"> <br><br>
+  Click Next: Deployment>.
+- In Deployment page you have to enable the **GitHub Continuous Deployment** Options and conncet to the **GitHub account** and select the proper **repository**.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-18.png" alt="App Service"> <br><br>
+  Now click Review and Create then click Create. It will create the app service. You can see the overview from azure portal. Our application URL is: https://sadik-ci-cd.azurewebsites.net.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-19.png" alt="App Service"> <br><br>
+- Let's browse our app service page https://sadik-ci-cd.azurewebsites.net. We can see the Azure default page.
   
+  
+  
+  As we integrate it on the github project repository and that repository we already build from Azure DevOps Build Pipeline so we should see our sample application page.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-20.png" alt="App Service"> <br><br>
+  This is our application sample page.
+  
+  You can notice that our CI means Continious Integration has been completed. Now It's time to setup CD means Continious Deployment.
+
+### <a name="06">:diamond_shape_with_a_dot_inside: &nbsp;Create a Service connection</a>
+- Go to the [Azure DevOps Portal](https://dev.azure.com/). Now go inside the project and from the left bottom click **Project Settings**. Scroll down settings and select **Service Connection**.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-21.png" alt="Service Connection"> <br><br>
+- Click **Create New Service Connection**. Search **Azure Resource Manger** and select it and click Next.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-22.png" alt="Service Connection"> <br><br>
+- Then select Authentication method: **Service principal (automatic)** and click Next.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-23.png" alt="Service Connection"> <br><br>
+- Provide necessery information of subscription and other information then Save it.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-24.png" alt="Service Connection"> <br><br>
+- In the Service Connection page you will see the name **AzureSubscription** that we configured.
+ <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-25.png" alt="Service Connection"> <br><br>
+ Our service connection now completed.
+ 
