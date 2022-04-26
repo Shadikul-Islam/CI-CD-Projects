@@ -138,14 +138,6 @@ I have already created a project which is pushed in github. If you don't have an
   Now click Review and Create then click Create. It will create the app service. You can see the overview from azure portal. Our application URL is: https://sadik-ci-cd.azurewebsites.net.
   <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-19.png" alt="App Service"> <br><br>
 - Let's browse our app service page https://sadik-ci-cd.azurewebsites.net. We can see the Azure default page.
-  
-  
-  
-  As we integrate it on the github project repository and that repository we already build from Azure DevOps Build Pipeline so we should see our sample application page.
-  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-20.png" alt="App Service"> <br><br>
-  This is our application sample page.
-  
-  You can notice that our CI means Continious Integration has been completed. Now It's time to setup CD means Continious Deployment.
 
 ### <a name="06">:diamond_shape_with_a_dot_inside: &nbsp;Create a Service connection</a>
 - Go to the [Azure DevOps Portal](https://dev.azure.com/). Now go inside the project and from the left bottom click **Project Settings**. Scroll down settings and select **Service Connection**.
@@ -159,4 +151,58 @@ I have already created a project which is pushed in github. If you don't have an
 - In the Service Connection page you will see the name **AzureSubscription** that we configured.
  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-25.png" alt="Service Connection"> <br><br>
  Our service connection now completed.
+- As we integrate it on the github project repository and that repository we already build from Azure DevOps Build Pipeline so we should see our sample application page. If you can not see your application then don't worry you need to release. We will do it next step on Release pipeline.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-20.png" alt="App Service"> <br><br>
+  This is our application sample page.
+  
+- You can notice that our CI means Continious Integration has been completed. Now It's time to setup CD means Continious Deployment.
  
+### <a name="07">:diamond_shape_with_a_dot_inside: &nbsp;Create Release Pipeline</a>
+- Go to Azure DevOps portal again. Click Pipelines and now click **Release**. Click **New** then click **New Release Pipeline**. 
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-26.png" alt="Release Pipeline"> <br><br>
+- Click the **Empty Job** option. 
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-27.png" alt="Release Pipeline"> <br><br>
+  Provide a Stage Name. I provided **Deployment**. then Click X sign of right top side.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-28.png" alt="Release Pipeline"> <br><br>
+- Click **Add an Artifcat** option.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-29.png" alt="Release Pipeline"> <br><br>
+  Select Source Type: Build, Project: Your project, Source: Your build package and click Add.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-30.png" alt="Release Pipeline"> <br><br>
+- Click Deployment **Job and Task** option.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-31.png" alt="Release Pipeline"> <br><br>
+  Click Agent job **+** icon. Search **Azure App Service Deploy** from Search Bar and select **Azure App Service Deploy** and click Add.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-32.png" alt="Release Pipeline"> <br><br>
+  Now we have to configure the Deployment into Azure App Service. Provide the necessery information.
+  
+  **Display Name:** Give as your wish
+  
+  **Connection Type:** Azure Resource Manager
+  
+  **Azure Subscription:** AzureSubscription (We created this on previous step)
+  
+  **App Service:** Web App Windows. We created this type App Service on previous step.
+  
+  **App Service Name:** sadik-ci-cd
+  
+  **Package or folder:** Select the build package that we created from build pipeline and stored in **drop/web** folder.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-33.png" alt="Release Pipeline"> <br><br>
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-34.png" alt="Release Pipeline"> <br><br>
+- Now click Save and then Create Release then click Create.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-35.png" alt="Release Pipeline"> <br><br>
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-36.png" alt="Release Pipeline"> <br><br>
+- It will show **Release-1 has been created**. Click on Release-1 you can see the details stage.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-37.png" alt="Release Pipeline"> <br><br>
+- In release-1 Page click **Edit** and Select **Edit Pipeline** option.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-38.png" alt="Release Pipeline"> <br><br>
+- Click Artifacts Icon then Enable the **Continuous deployment trigger** and Save it.
+ <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-39.png" alt="Release Pipeline"> <br><br>
+- Now Run Create Release again. It will create Release-2. 
+- You can now visit the App Service URL. You will see our sample page.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-20.png" alt="App Service"> <br><br>
+
+### <a name="08">:diamond_shape_with_a_dot_inside: &nbsp;Deployment Verification</a>
+- Now all of things has been setup. Let's change our code and commit it. It will automatically deployed into our app service. Go to your project and change something. In my case I am going to my project from my local PC. Go to **Pages** folder then Open **LogIn.cshtml**. Added this line ```<div><br> CI/CD Testing By Sadik <br> </div>````.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-40.png" alt="Validation"> <br><br>
+- Commited it in Git then pushed it into GitHub. After push Azure DevOps build pipeline will automatically build the code then release pipeline deploy it into Azure App Service. Once it deployed then go to browser and hit the app service URL. You will see the updated application.
+  <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-41.png" alt="Validation"> <br><br>
+- Yes! We can see it's showing our updated application using CD/CD.
