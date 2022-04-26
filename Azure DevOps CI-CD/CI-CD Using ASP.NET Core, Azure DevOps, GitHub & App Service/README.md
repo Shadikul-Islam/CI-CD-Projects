@@ -201,8 +201,10 @@ I have already created a project which is pushed in github. If you don't have an
   <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-20.png" alt="App Service"> <br><br>
 
 ### <a name="08">:diamond_shape_with_a_dot_inside: &nbsp;Deployment Verification</a>
-- Now all of things has been setup. Let's change our code and commit it. It will automatically deployed into our app service. Go to your project and change something. In my case I am going to my project from my local PC. Go to **Pages** folder then Open **LogIn.cshtml**. Added this line ```<div><br> CI/CD Testing By Sadik <br> </div>````.
+- Now all of things has been setup. Let's change our code and commit it. It will automatically deployed into our app service. Go to your project and change something. In my case I am going to my project from my local PC. Go to **Pages** folder then Open **LogIn.cshtml**. Added this line ````<div><br> CI/CD Testing By Sadik <br> </div>````.
   <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-40.png" alt="Validation"> <br><br>
 - Commited it in Git then pushed it into GitHub. After push Azure DevOps build pipeline will automatically build the code then release pipeline deploy it into Azure App Service. Once it deployed then go to browser and hit the app service URL. You will see the updated application.
   <br><br> <img src= "https://github.com/Shadikul-Islam/CI-CD-Projects/blob/master/Azure%20DevOps%20CI-CD/CI-CD%20Using%20ASP.NET%20Core%2C%20Azure%20DevOps%2C%20GitHub%20%26%20App%20Service/Images/Image-41.png" alt="Validation"> <br><br>
 - Yes! We can see it's showing our updated application using CD/CD.
+
+## This project is under construction.
